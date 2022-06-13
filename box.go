@@ -3,6 +3,7 @@ package golang_united_school_homework
 import (
 	"errors"
 	"fmt"
+	"reflect"
 )
 
 //use these errors as appropriate, wrapping them with fmt.Errorf function
@@ -96,8 +97,7 @@ func (b *box) SumArea() float64 {
 func (b *box) RemoveAllCircles() error {
 	bFlag := false
 	for i, v := range b.shapes {
-		_, ok := v.(Circle)
-		if ok {
+		if reflect.TypeOf(v) == reflect.TypeOf(Circle) {
 			b.shapes = append(b.shapes[:i], b.shapes[i+1:]...)
 			bFlag = true
 		}
